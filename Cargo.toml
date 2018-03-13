@@ -1,0 +1,7 @@
+[package]
+name = "termio"
+version = "0.1.0"
+authors = ["knipferrc <knipferrc@gmail.com>"]
+
+[dependencies]
+cursive = "0.8.1"
