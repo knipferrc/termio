@@ -4,6 +4,4 @@ version = "0.1.0"
 authors = ["knipferrc <knipferrc@gmail.com>"]
 
 [dependencies]
-termion = "*"
-glutin = "*"
-gl = "*"
+cursive = "0.8.1"
