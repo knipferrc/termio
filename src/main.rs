@@ -1,68 +1,40 @@
-extern crate cursive;
+extern crate gl;
+extern crate glutin;
 
-use cursive::Cursive;
-use cursive::traits::*;
-use cursive::views::{Dialog, DummyView, LinearLayout, SelectView, TextView};
-
-use std::fs::{self, DirEntry, File};
-use std::io::Read;
-use std::path::Path;
+use glutin::GlContext;
 
 fn main() {
-    let mut app = Cursive::new();
-    let mut panes = LinearLayout::horizontal();
-    let picker = file_picker(".");
-    panes.add_child(picker.full_screen());
-    panes.add_child(DummyView);
-    panes.add_child(
-        TextView::new("file contents")
-            .with_id("contents")
-            .fixed_size((50, 25)),
-    );
-    let mut layout = LinearLayout::vertical();
-    layout.add_child(panes);
-    layout.add_child(
-        TextView::new("status")
-            .scrollable(false)
-            .with_id("status")
-            .fixed_size((80, 1)),
-    );
-    app.add_layer(Dialog::around(layout).button("Quit", |a| a.quit()));
-    app.run();
-}
+    let mut events_loop = glutin::EventsLoop::new();
+    let window = glutin::WindowBuilder::new()
+        .with_title("Termio")
+        .with_dimensions(1024, 768);
+    let context = glutin::ContextBuilder::new().with_vsync(true);
+    let gl_window = glutin::GlWindow::new(window, context, &events_loop).unwrap();
 
-fn file_picker<D>(directory: D) -> SelectView<DirEntry>
-where
-    D: AsRef<Path>,
-{
-    let mut view = SelectView::new();
-    for entry in fs::read_dir(directory).expect("can't read directory") {
-        if let Ok(e) = entry {
-            let file_name = e.file_name().into_string().unwrap();
-            view.add_item(file_name, e);
-        }
+    unsafe {
+        gl_window.make_current().unwrap();
     }
-    view.on_select(update_status).on_submit(load_contents)
-}
 
-fn update_status(app: &mut Cursive, entry: &DirEntry) {
-    let mut status_bar = app.find_id::<TextView>("status").unwrap();
-    let file_name = entry.file_name().into_string().unwrap();
-    let file_size = entry.metadata().unwrap().len();
-    let content = format!("{}: {} bytes", file_name, file_size);
-    status_bar.set_content(content);
-}
+    unsafe {
+        gl::load_with(|symbol| gl_window.get_proc_address(symbol) as *const _);
+        gl::ClearColor(1.0, 1.0, 1.0, 1.0);
+    }
 
-fn load_contents(app: &mut Cursive, entry: &DirEntry) {
-    let mut text_view = app.find_id::<TextView>("contents").unwrap();
-    let content = if entry.metadata().unwrap().is_dir() {
-        "<DIR>".to_string()
-    } else {
-        let mut buf = String::new();
-        let _ = File::open(entry.file_name())
-            .and_then(|mut f| f.read_to_string(&mut buf))
-            .map_err(|e| buf = format!("Error: {}", e));
-        buf
-    };
-    text_view.set_content(content);
+    let mut running = true;
+    while running {
+        events_loop.poll_events(|event| match event {
+            glutin::Event::WindowEvent { event, .. } => match event {
+                glutin::WindowEvent::Closed => running = false,
+                glutin::WindowEvent::Resized(w, h) => gl_window.resize(w, h),
+                _ => (),
+            },
+            _ => (),
+        });
+
+        unsafe {
+            gl::Clear(gl::COLOR_BUFFER_BIT);
+        }
+
+        gl_window.swap_buffers().unwrap();
+    }
 }
