@@ -1,0 +1,59 @@
+{
+  "name": "termio",
+  "version": "0.0.1",
+  "description": "Terminal Emulator",
+  "license": "MIT",
+  "author": "Tyler Knipfer <knipferrc@gmail.com>",
+  "main": "lib/main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/knipferrc/termio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/knipferrc/termio/issues"
+  },
+  "keywords": ["typescript", "react", "termio", "electron"],
+  "scripts": {
+    "parcel-dev": "parcel ./app/renderer/index.html -d build/",
+    "electron-dev":
+      "tsc ./app/main/main.ts --outDir lib && ELECTRON_START_URL=http://localhost:1234 electron ./lib/main.js",
+    "start": "concurrently \"npm run electron-dev\" \"npm run parcel-dev\"",
+    "build":
+      "tsc ./app/main/main.ts --outDir lib && parcel build ./app/renderer/index.html -d build/ --public-url ./ --target=electron && ./scripts/inject.sh",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps",
+    "format": "prettier --write '**/*.{tsx,ts,css,md,js}'",
+    "pretty-quick": "pretty-quick",
+    "precommit": "pretty-quick --staged"
+  },
+  "build": {
+    "appId": "app.com.termio",
+    "mac": {
+      "category": "terminal.emulator"
+    },
+    "files": ["node_modules/", "package.json", "lib/", "build/"]
+  },
+  "dependencies": {
+    "@types/react": "^16.0.40",
+    "@types/react-dom": "^16.0.4",
+    "autoprefixer": "^8.1.0",
+    "default-shell": "^1.0.1",
+    "node-pty": "^0.7.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
+    "styled-components": "^3.2.3",
+    "typescript": "^2.7.2",
+    "xterm": "^3.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "electron": "^1.8.3",
+    "electron-builder": "^20.5.1",
+    "husky": "^0.14.3",
+    "parcel-bundler": "^1.6.2",
+    "prettier": "^1.11.1",
+    "pretty-quick": "^1.4.1"
+  }
+}

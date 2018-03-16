@@ -1,2 +1,3 @@
-# termio
-Terminal editor written in rust
+# Termio
+
+* Terminal Emulator
