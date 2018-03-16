@@ -14,10 +14,13 @@ body {
   padding: 0;
   margin: 0;
   height: 100%;
+  -webkit-app-region: drag
 }
 
 .terminal {
   height: 100%;
+  padding-top: 40px;
+  padding-left: 10px;
 }
 `
 
@@ -41,10 +44,10 @@ export default class App extends PureComponent {
       xterm.write(data)
     })
 
-    xterm.open(document.getElementById('xterm-container'))
+    xterm.open(document.getElementById('termio'))
   }
 
   render() {
-    return <div id="xterm-conrtainer" />
+    return <div id="termio" />
   }
 }

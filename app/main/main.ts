@@ -8,7 +8,8 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     height: 600,
     width: 800,
-    title: 'Termio'
+    title: 'Termio',
+    titleBarStyle: 'hidden-inset'
   })
 
   const startUrl =
