@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron'
-import * as path from 'path'
 import * as url from 'url'
+import { resolve } from 'app-root-path'
 
 let mainWindow: Electron.BrowserWindow
 
@@ -9,13 +9,14 @@ const createWindow = () => {
     height: 600,
     width: 800,
     title: 'Termio',
-    titleBarStyle: 'hidden-inset'
+    titleBarStyle: 'hidden-inset',
+    backgroundColor: '#000'
   })
 
   const startUrl =
     process.env.ELECTRON_START_URL ||
     url.format({
-      pathname: path.join(__dirname, '../build/index.html'),
+      pathname: resolve('build/index.html'),
       protocol: 'file:',
       slashes: true
     })

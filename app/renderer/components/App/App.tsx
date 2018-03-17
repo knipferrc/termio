@@ -1,50 +1,39 @@
-import 'xterm/dist/xterm.css'
+import './App.css'
 
 import React, { PureComponent } from 'react'
-import { injectGlobal } from 'styled-components'
 import { Terminal } from 'xterm'
+import * as fit from 'xterm/lib/addons/fit/fit'
 
 const electron = window.require('electron')
 const pty = electron.remote.require('node-pty')
 const defaultShell = electron.remote.require('default-shell')
 const os = electron.remote.require('os')
 
-injectGlobal`
-body {
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  -webkit-app-region: drag
-}
-
-.terminal {
-  height: 100%;
-  padding-top: 40px;
-  padding-left: 10px;
-}
-`
+Terminal.applyAddon(fit)
 
 export default class App extends PureComponent {
   componentDidMount() {
-    const xterm = new Terminal()
+    const xterm: any = new Terminal()
 
     const ptyProcess = pty.spawn(defaultShell, [], {
       name: 'xterm-color',
-      cols: 80,
-      rows: 30,
       cwd: os.homedir(),
       env: process.env
     })
 
-    xterm.on('data', data => {
+    xterm.on('data', (data: any) => {
       ptyProcess.write(data)
     })
 
-    ptyProcess.on('data', function(data: any) {
+    ptyProcess.on('data', (data: any) => {
       xterm.write(data)
     })
 
     xterm.open(document.getElementById('termio'))
+
+    xterm.resize(xterm)
+
+    xterm.fit()
   }
 
   render() {

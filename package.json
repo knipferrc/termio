@@ -19,7 +19,7 @@
       "tsc ./app/main/main.ts --outDir lib && ELECTRON_START_URL=http://localhost:1234 electron ./lib/main.js",
     "start": "concurrently \"npm run electron-dev\" \"npm run parcel-dev\"",
     "build":
-      "tsc ./app/main/main.ts --outDir lib && parcel build ./app/renderer/index.html -d build/ --public-url ./ --target=electron && ./scripts/inject.sh",
+      "tsc ./app/main/main.ts --outDir lib && parcel build ./app/renderer/index.html -d build/ --public-url ./ --target=electron",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
@@ -37,6 +37,7 @@
   "dependencies": {
     "@types/react": "^16.0.40",
     "@types/react-dom": "^16.0.4",
+    "app-root-path": "^2.0.1",
     "autoprefixer": "^8.1.0",
     "default-shell": "^1.0.1",
     "node-pty": "^0.7.4",
