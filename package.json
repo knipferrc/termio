@@ -19,7 +19,7 @@
       "tsc ./app/main/main.ts --outDir lib && ELECTRON_START_URL=http://localhost:1234 electron ./lib/main.js",
     "start": "concurrently \"npm run electron-dev\" \"npm run parcel-dev\"",
     "build":
-      "tsc ./app/main/main.ts --outDir lib && parcel build ./app/renderer/index.html -d build/ --public-url ./ --target=electron",
+      "tsc ./app/main/main.ts --outDir lib && parcel build ./app/renderer/index.html -d build/ --public-url ./ --target=electron && ./scripts/inject.sh",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
