@@ -44,8 +44,6 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
-    "styled-components": "^3.2.3",
-    "typescript": "^2.7.2",
     "xterm": "^3.2.0"
   },
   "devDependencies": {
@@ -55,6 +53,7 @@
     "husky": "^0.14.3",
     "parcel-bundler": "^1.6.2",
     "prettier": "^1.11.1",
-    "pretty-quick": "^1.4.1"
+    "pretty-quick": "^1.4.1",
+    "typescript": "^2.7.2"
   }
 }
