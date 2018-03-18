@@ -6,8 +6,8 @@ let mainWindow: Electron.BrowserWindow
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
-    height: 600,
-    width: 800,
+    height: 450,
+    width: 750,
     title: 'Termio',
     titleBarStyle: 'hidden-inset',
     backgroundColor: '#000'
