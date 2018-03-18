@@ -1,17 +1,7 @@
-@import 'xterm/dist/xterm.css';
-
 body {
   padding: 0;
   margin: 0;
   height: 100%;
   background: black;
   -webkit-app-region: drag;
-}
-
-.terminal {
-  height: 100%;
-}
-
-::-webkit-scrollbar {
-  display: none;
 }
