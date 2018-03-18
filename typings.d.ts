@@ -5,3 +5,4 @@ interface Window {
 }
 
 declare module 'app-root-path'
+declare module 'react-resize-detector'
