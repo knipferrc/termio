@@ -9,7 +9,6 @@ const createWindow = () => {
     height: 450,
     width: 750,
     title: 'Termio',
-    titleBarStyle: 'hidden-inset',
     backgroundColor: '#000'
   })
 

@@ -16,7 +16,9 @@ let xterm: any
 
 export default class Term extends PureComponent {
   componentDidMount() {
-    xterm = new Terminal()
+    xterm = new Terminal({
+      cursorBlink: true
+    })
 
     const ptyProcess = pty.spawn(defaultShell, [], {
       name: 'xterm-color',
