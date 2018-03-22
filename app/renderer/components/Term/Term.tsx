@@ -1,9 +1,11 @@
 import './Term.css'
 
-import React, { Fragment, PureComponent } from 'react'
-import { Terminal } from 'xterm'
 import * as fit from 'xterm/lib/addons/fit/fit'
+
+import React, { Fragment, PureComponent } from 'react'
+
 import ReactResizeDetector from 'react-resize-detector'
+import { Terminal } from 'xterm'
 
 const electron = window.require('electron')
 const pty = electron.remote.require('node-pty')
@@ -17,7 +19,8 @@ let xterm: any
 export default class Term extends PureComponent {
   componentDidMount() {
     xterm = new Terminal({
-      cursorBlink: true
+      cursorBlink: true,
+      fontSize: 12
     })
 
     const ptyProcess = pty.spawn(defaultShell, [], {

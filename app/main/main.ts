@@ -1,5 +1,7 @@
-import { app, BrowserWindow } from 'electron'
 import * as url from 'url'
+
+import { BrowserWindow, app } from 'electron'
+
 import { resolve } from 'app-root-path'
 
 let mainWindow: Electron.BrowserWindow
@@ -9,7 +11,9 @@ const createWindow = () => {
     height: 450,
     width: 750,
     title: 'Termio',
-    backgroundColor: '#000'
+    backgroundColor: '#000',
+    titleBarStyle: 'hidden-inset',
+    frame: false
   })
 
   const startUrl =

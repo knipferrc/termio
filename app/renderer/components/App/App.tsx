@@ -1,8 +1,13 @@
 import './App.css'
 
+import { BrowserRouter } from 'react-router-dom'
 import React from 'react'
-import Term from '../Term/Term'
+import Routes from '../../routes/Routes'
 
-const App = () => <Term />
+const App = () => (
+  <BrowserRouter>
+    <Routes />
+  </BrowserRouter>
+)
 
 export default App
