@@ -35,7 +35,7 @@
     "files": ["node_modules/", "package.json", "lib/", "build/"]
   },
   "dependencies": {
-    "@types/react": "^16.0.40",
+    "@types/react": "^16.0.41",
     "@types/react-dom": "^16.0.4",
     "app-root-path": "^2.0.1",
     "autoprefixer": "^8.2.0",
@@ -52,7 +52,7 @@
     "@types/react-router-dom": "^4.2.5",
     "concurrently": "^3.5.1",
     "electron": "^1.8.4",
-    "electron-builder": "^20.7.1",
+    "electron-builder": "^20.8.0",
     "husky": "^0.14.3",
     "parcel-bundler": "^1.6.2",
     "prettier": "^1.11.1",
