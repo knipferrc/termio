@@ -19,7 +19,7 @@
       "tsc ./app/main/main.ts --outDir lib && ELECTRON_START_URL=http://localhost:1234 electron ./lib/main.js",
     "start": "concurrently \"npm run electron-dev\" \"npm run parcel-dev\"",
     "build":
-      "tsc ./app/main/main.ts --outDir lib && parcel build ./app/renderer/index.html -d build/ --public-url ./ --target=electron && ./scripts/inject.sh",
+      "tsc ./app/main/main.ts --outDir lib && parcel build ./app/renderer/index.html -d build/ --public-url ./ --target=electron",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
@@ -35,7 +35,7 @@
     "files": ["node_modules/", "package.json", "lib/", "build/"]
   },
   "dependencies": {
-    "@types/react": "^16.0.41",
+    "@types/react": "^16.1.0",
     "@types/react-dom": "^16.0.4",
     "app-root-path": "^2.0.1",
     "autoprefixer": "^8.2.0",
@@ -43,20 +43,20 @@
     "node-pty": "^0.7.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-resize-detector": "^2.2.0",
+    "react-resize-detector": "^2.3.0",
     "react-router-dom": "^4.2.2",
     "styled-components": "^3.2.3",
     "xterm": "^3.2.0"
   },
   "devDependencies": {
-    "@types/react-router-dom": "^4.2.5",
+    "@types/react-router-dom": "^4.2.6",
     "concurrently": "^3.5.1",
     "electron": "^1.8.4",
-    "electron-builder": "^20.8.0",
+    "electron-builder": "^20.8.1",
     "husky": "^0.14.3",
-    "parcel-bundler": "^1.6.2",
+    "parcel-bundler": "^1.7.0",
     "prettier": "^1.11.1",
     "pretty-quick": "^1.4.1",
-    "typescript": "^2.7.2"
+    "typescript": "^2.8.1"
   }
 }
